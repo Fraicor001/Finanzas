@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device=device-width, initial-scale=1.0">
+  <title>Mis Finanzas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Mis Finanzas</h1>
+
+  <!-- DASHBOARD PRINCIPAL -->
+  <div id="dashboard">
+    <div class="accounts-container">
+      <div id="accounts" class="accounts"></div>
+
+      <!-- Barra de acciones solo en pantalla principal -->
+      <div class="bottom-buttons">
+        <button id="addAccountBtn">Agregar Cuenta</button>
+        <button id="addCategoryBtn">Categorías</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISTA CUENTA -->
+  <div id="accountView" style="display:none;">
+    <button class="back-btn">← Volver</button>
+    <h2 id="accountTitle">Cuenta</h2>
+    <p>Balance: <span id="balanceDisplay">$0.00</span></p>
+
+    <ul id="transactionList"></ul>
+
+    <!-- Botón moderno flotante para agregar movimiento -->
+    <button id="addTransactionBtnShow" class="fab" onclick="showAddTransaction()" aria-label="Agregar movimiento">Agregar Movimiento</button>
+  </div>
+
+  <!-- MODAL AGREGAR CUENTA -->
+  <div class="modal" id="accountModal" style="display:none;">
+    <div class="modal-box">
+      <h3>Agregar Cuenta</h3>
+      <input type="text" id="accountName" placeholder="Nombre de la cuenta">
+      <button id="saveAccount">Guardar</button>
+      <button data-close>Cancelar</button>
+    </div>
+  </div>
+
+  <!-- MODAL CATEGORÍAS -->
+  <div class="modal" id="categoryModal" style="display:none;">
+    <div class="modal-box">
+      <h3>Agregar Categoría</h3>
+      <input type="text" id="categoryName" placeholder="Nombre de la categoría">
+      <button id="saveCategory">Guardar</button>
+
+      <!-- Lista de categorías guardadas -->
+      <div class="category-list">
+        <h4>Categorías guardadas</h4>
+        <ul id="categoryList"></ul>
+      </div>
+
+      <button data-close>Cerrar</button>
+    </div>
+  </div>
+
+  <!-- MODAL AGREGAR MOVIMIENTO -->
+  <div class="modal" id="transactionModal" style="display:none;">
+    <div class="modal-box">
+      <h3>Agregar Movimiento</h3>
+      <input type="number" id="transactionAmount" placeholder="Monto">
+      <input type="text" id="transactionDesc" placeholder="Descripción">
+      <select id="transactionCategory"></select>
+      <div id="transactionToggle" class="toggle">
+        <div class="toggle-slider"></div>
+        <button type="button">Ingreso</button>
+        <button type="button">Gasto</button>
+      </div>
+      <button id="addTransactionBtn">Agregar</button>
+      <button data-close>Cancelar</button>
+    </div>
+  </div>
+
+  <!-- MODAL EDITAR MOVIMIENTO -->
+  <div class="modal" id="editTransactionModal" style="display:none;">
+    <div class="modal-box">
+      <h3>Editar Movimiento</h3>
+      <input type="number" id="editTransactionAmount" placeholder="Monto">
+      <input type="text" id="editTransactionDesc" placeholder="Descripción">
+      <select id="editTransactionCategory"></select>
+      <div id="editTransactionToggle" class="toggle">
+        <div class="toggle-slider"></div>
+        <button type="button">Ingreso</button>
+        <button type="button">Gasto</button>
+      </div>
+      <button id="updateTransactionBtn">Guardar Cambios</button>
+      <button data-close>Cancelar</button>
+    </div>
+  </div>
+
+  <!-- MODAL CONFIRMACIÓN (moderno) -->
+  <div class="modal" id="confirmModal" style="display:none;">
+    <div class="modal-box confirm-box">
+      <h3 id="confirmTitle">Confirmación</h3>
+      <p id="confirmMessage">¿Estás seguro?</p>
+      <div class="confirm-actions">
+        <button id="confirmCancelBtn" type="button">Cancelar</button>
+        <button id="confirmAcceptBtn" type="button" class="btn-danger">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DE TOASTS -->
+  <div id="toastContainer" class="toasts"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
